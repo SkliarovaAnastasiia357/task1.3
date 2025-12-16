@@ -1,4 +1,3 @@
-
 let allOrders = [];
 let myPieChart;
 let myBarChart;
