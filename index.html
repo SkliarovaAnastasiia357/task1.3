@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ Выручки Интернет-Магазина</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем PapaParse для удобной работы с CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- Подключаем Chart.js для построения диаграмм -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Анализ Выручки Интернет-Магазина</h1>
+
+        <section class="controls">
+            <div class="control-group">
+                <label for="csvFileInput">Загрузить CSV-файл (orders_customers.csv):</label>
+                <input type="file" id="csvFileInput" accept=".csv">
+            </div>
+
+            <div class="control-group" id="yearSelection" style="display:none;">
+                <label for="yearSelect">Выберите год:</label>
+                <select id="yearSelect"></select>
+            </div>
+
+            <div class="control-group" id="cityComparisonSelection" style="display:none;">
+                <label>Сравнить города по годам:</label>
+                <div>
+                    <select id="city1Select"></select>
+                    <select id="city2Select"></select>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-display" id="dataDisplay" style="display:none;">
+            <h2>Отчет по выручке</h2>
+
+            <div class="summary-section">
+                <h3>Сводная информация за <span id="summaryYear"></span> год</h3>
+                <div id="summaryInfo">
+                    <p><strong>Общая выручка:</strong> <span id="totalRevenueSummary"></span></p>
+                    <p><strong>Количество заказов:</strong> <span id="totalOrdersSummary"></span></p>
+                    <p><strong>Уникальных городов:</strong> <span id="uniqueCitiesSummary"></span></p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>Выручка по городам (за <span id="tableYear"></span> год)</h3>
+                <table id="cityRevenueTable">
+                    <thead>
+                        <tr>
+                            <th>Город (Штат)</th>
+                            <th>Выручка</th>
+                            <th>Доля (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Данные будут вставлены сюда JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box">
+                    <h3>Доля выручки по городам (Топ-10 + Остальные) за <span id="pieChartYear"></span> год</h3>
+                    <canvas id="revenuePieChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Сравнение выручки двух городов по годам</h3>
+                    <canvas id="cityComparisonBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
